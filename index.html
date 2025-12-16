@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إذاعة القرآن الكريم من القاهرة | البث المباشر</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary-color: #0a3d62;
+            --secondary-color: #1a5276;
+            --accent-color: #f1c40f;
+            --accent-dark: #f39c12;
+            --text-light: #ffffff;
+            --text-gray: #bdc3c7;
+            --card-bg: rgba(255, 255, 255, 0.08);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --gradient-bg: linear-gradient(135deg, #0a3d62 0%, #1a5276 30%, #2c3e50 100%);
+            --gradient-accent: linear-gradient(135deg, #f1c40f 0%, #f39c12 100%);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap');
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--gradient-bg);
+            color: var(--text-light);
+            min-height: 100vh;
+            direction: rtl;
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        /* تصميم رأس الصفحة */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 90px;
+            background: rgba(10, 61, 98, 0.95);
+            backdrop-filter: blur(15px);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-bottom: 3px solid var(--accent-color);
+            z-index: 2000;
+            transition: var(--transition);
+        }
+
+        .header.scrolled {
+            height: 70px;
+            background: rgba(10, 61, 98, 0.98);
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: var(--primary-color);
+            box-shadow: 0 5px 15px rgba(241, 196, 15, 0.3);
+            animation: pulse 3s infinite;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-title {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(to right, #f1c40f, #f39c12);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-subtitle {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--text-gray);
+            margin-top: 5px;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 8px 15px;
+            border-radius: 30px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-link.active {
+            background: rgba(241, 196, 15, 0.15);
+            color: var(--accent-color);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 20px;
+            width: 20px;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 3px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            color: var(--text-light);
+            font-size: 18px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-btn:hover {
+            background: rgba(241, 196, 15, 0.2);
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .header-time {
+            font-size: 14px;
+            color: var(--text-gray);
+            direction: ltr;
+        }
+
+        /* المحتوى الرئيسي */
+        .main-content {
+            padding-top: 120px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        /* بطاقة المشغل الرئيسية */
+        .player-hero {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--card-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .player-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(241, 196, 15, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .player-header {
+            padding: 40px 40px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .player-title {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .player-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient-accent);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: var(--primary-color);
+            box-shadow: 0 10px 20px rgba(241, 196, 15, 0.3);
+        }
+
+        .player-text h1 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .player-text p {
+            color: var(--text-gray);
+            font-size: 16px;
+        }
+
+        .player-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(46, 204, 113, 0.15);
+            color: #2ecc71;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .player-body {
+            padding: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .audio-container {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .audio-container audio {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .control-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient-accent);
+            border: none;
+            color: var(--primary-color);
+            font-size: 22px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 8px 20px rgba(241, 196, 15, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .control-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(241, 196, 15, 0.4);
+        }
+
+        .control-btn.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .control-btn.secondary:hover {
+            background: rgba(241, 196, 15, 0.2);
+            color: var(--accent-color);
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-grow: 1;
+            max-width: 300px;
+        }
+
+        .volume-control i {
+            font-size: 22px;
+            color: var(--accent-color);
+        }
+
+        .volume-slider {
+            flex-grow: 1;
+            -webkit-appearance: none;
+            height: 8px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .player-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            min-width: 150px;
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        /* قسم الآية اليومية */
+        .verse-section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title i {
+            color: var(--accent-color);
+            font-size: 32px;
+        }
+
+        .verse-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--card-border);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .verse-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .verse-card::before {
+            content: "﴿";
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 80px;
+            color: rgba(241, 196, 15, 0.1);
+            font-family: 'Cairo', sans-serif;
+            line-height: 1;
+        }
+
+        .verse-card::after {
+            content: "﴾";
+            position: absolute;
+            bottom: 20px;
+            left: 30px;
+            font-size: 80px;
+            color: rgba(241, 196, 15, 0.1);
+            font-family: 'Cairo', sans-serif;
+            line-height: 1;
+        }
+
+        .verse-text {
+            font-size: 28px;
+            line-height: 1.8;
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .verse-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .verse-reference {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .verse-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .verse-btn {
+            background: rgba(241, 196, 15, 0.1);
+            border: 1px solid rgba(241, 196, 15, 0.3);
+            color: var(--accent-color);
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .verse-btn:hover {
+            background: rgba(241, 196, 15, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* بطاقات المميزات */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--card-border);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, rgba(241, 196, 15, 0.1) 0%, transparent 70%);
+            border-radius: 0 0 0 100%;
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient-accent);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            box-shadow: 0 10px 20px rgba(241, 196, 15, 0.2);
+        }
+
+        .feature-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .feature-desc {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+        }
+
+        .feature-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .feature-link:hover {
+            gap: 15px;
+        }
+
+        /* قسم القراء */
+        .readers-section {
+            margin-bottom: 50px;
+        }
+
+        .readers-slider {
+            display: flex;
+            gap: 25px;
+            overflow-x: auto;
+            padding: 20px 10px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-color) rgba(255, 255, 255, 0.1);
+        }
+
+        .readers-slider::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .readers-slider::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .readers-slider::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 10px;
+        }
+
+        .reader-card {
+            min-width: 250px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--card-border);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .reader-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .reader-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgba(241, 196, 15, 0.3);
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .reader-card:hover .reader-avatar {
+            border-color: var(--accent-color);
+        }
+
+        .reader-name {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .reader-style {
+            font-size: 16px;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .reader-desc {
+            font-size: 14px;
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .reader-btn {
+            background: rgba(241, 196, 15, 0.1);
+            border: 1px solid rgba(241, 196, 15, 0.3);
+            color: var(--accent-color);
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .reader-btn:hover {
+            background: rgba(241, 196, 15, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* التذييل */
+        .footer {
+            background: rgba(10, 30, 45, 0.9);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--accent-color);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+            transform: translateX(5px);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 18px;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background: var(--accent-color);
+            color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+
+        /* زر العودة للأعلى */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 22px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(241, 196, 15, 0.3);
+            z-index: 1000;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(241, 196, 15, 0.4);
+        }
+
+        /* تأثيرات الحركة */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200px 0; }
+            100% { background-position: 200px 0; }
+        }
+
+        /* تحسينات للشاشات الصغيرة */
+        @media (max-width: 1024px) {
+            .header {
+                padding: 0 25px;
+            }
+            
+            .header-nav {
+                display: none;
+            }
+            
+            .player-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+            
+            .player-stats {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .verse-text {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                height: 80px;
+                padding: 0 20px;
+            }
+            
+            .logo-title {
+                font-size: 22px;
+            }
+            
+            .logo-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+            }
+            
+            .main-content {
+                padding-top: 100px;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            
+            .player-body {
+                padding: 30px;
+            }
+            
+            .control-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .volume-control {
+                max-width: 100%;
+            }
+            
+            .verse-text {
+                font-size: 22px;
+            }
+            
+            .verse-details {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+            }
+            
+            .back-to-top {
+                left: 20px;
+                bottom: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 18px;
+            }
+        }
+
+        /* تأثيرات التحميل */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--accent-color);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- رأس الصفحة -->
+    <header class="header" id="header">
+        <div class="header-logo">
+            
+            <div class="logo-text">
+                <div class="logo-title">إذاعة القرآن الكريم</div>
+               
+            </div>
+        </div>
+        
+       
+        
+        
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="main-content">
+        <!-- مشغل الصوت الرئيسي -->
+        <section class="player-hero">
+            <div class="player-header">
+                <div class="player-title">
+                    
+                    <div class="player-text">
+                        <h1>البث المباشر لإذاعة القرآن الكريم</h1>
+                       
+                    </div>
+                </div>
+                <div class="player-status">
+                    <i class="fas fa-circle" style="font-size: 12px;"></i> بث مباشر
+                </div>
+            </div>
+            
+            <div class="player-body">
+                <div class="audio-container">
+                    <audio id="quranRadio" controls autoplay>
+                        <source src="https://n12.radiojar.com/8s5u5tpdtwzuv?rj-ttl=5&rj-tok=AAABkQBGauAAcn8pcfd2P11GkA" type="audio/mpeg">
+                        متصفحك لا يدعم مشغل الصوت. يرجى تحديث المتصفح أو استخدام متصفح آخر.
+                    </audio>
+                </div>
+                
+                <div class="player-controls">
+                    <div class="control-buttons">
+                        <button class="control-btn" id="playBtn" title="تشغيل">
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <button class="control-btn secondary" id="pauseBtn" title="إيقاف">
+                            <i class="fas fa-pause"></i>
+                        </button>
+                        <button class="control-btn secondary" id="prevBtn" title="السابق">
+                            <i class="fas fa-step-backward"></i>
+                        </button>
+                        <button class="control-btn secondary" id="nextBtn" title="التالي">
+                            <i class="fas fa-step-forward"></i>
+                        </button>
+                        <button class="control-btn secondary" id="repeatBtn" title="تكرار">
+                            <i class="fas fa-redo"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="volume-control">
+                        <i class="fas fa-volume-up"></i>
+                        <input type="range" min="0" max="100" value="80" class="volume-slider" id="volumeSlider">
+                    </div>
+                </div>
+                
+                
+            </div>
+        </section>
+
+        <!-- الآية اليومية -->
+        <section class="verse-section">
+            <h2 class="section-title">
+                <i class="fas fa-book-quran"></i> آية اليوم
+            </h2>
+            
+            <div class="verse-card">
+                <div class="verse-text" id="verse-text">
+                    "اللَّهُ نُورُ السَّمَاوَاتِ وَالْأَرْضِ ۚ مَثَلُ نُورِهِ كَمِشْكَاةٍ فِيهَا مِصْبَاحٌ ۖ الْمِصْبَاحُ فِي زُجَاجَةٍ ۖ الزُّجَاجَةُ كَأَنَّهَا كَوْكَبٌ دُرِّيٌّ يُوقَدُ مِن شَجَرَةٍ مُّبَارَكَةٍ زَيْتُونَةٍ لَّا شَرْقِيَّةٍ وَلَا غَرْبِيَّةٍ يَكَادُ زَيْتُهَا يُضِيءُ وَلَوْ لَمْ تَمْسَسْهُ نَارٌ ۚ نُّورٌ عَلَىٰ نُورٍ ۗ يَهْدِي اللَّهُ لِنُورِهِ مَن يَشَاءُ ۚ وَيَضْرِبُ اللَّهُ الْأَمْثَالَ لِلنَّاسِ ۗ وَاللَّهُ بِكُلِّ شَيْءٍ عَلِيمٌ"
+                </div>
+                
+                <div class="verse-details">
+                    <div class="verse-reference" id="verse-reference">سورة النور - الآية 35</div>
+                    <div class="verse-actions">
+                        <button class="verse-btn" id="copy-verse">
+                            <i class="far fa-copy"></i> نسخ الآية
+                        </button>
+                        <button class="verse-btn" id="share-verse">
+                            <i class="fas fa-share-alt"></i> مشاركة
+                        </button>
+                        <button class="verse-btn" id="new-verse">
+                            <i class="fas fa-random"></i> آية جديدة
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- المميزات -->
+        <section class="features-section">
+            <h2 class="section-title">
+                <i class="fas fa-star"></i> مميزات الإذاعة
+            </h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="feature-title">بث عالمي</h3>
+                    <p class="feature-desc">تغطية إرسال في جميع أنحاء العالم عبر الأقمار الصناعية والإنترنت، مع جودة صوت عالية الوضوح.</p>
+                   
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="feature-title">أفضل القراء</h3>
+                    <p class="feature-desc">مجموعة مختارة من أشهر قراء القرآن الكريم في مصر والعالم العربي بمختلف الروايات.</p>
+                   
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-broadcast-tower"></i>
+                    </div>
+                    <h3 class="feature-title">بث بدون انقطاع</h3>
+                    <p class="feature-desc">بث على مدار الساعة بدون توقف مع محطات احتياطية لضمان استمرارية البث في جميع الظروف.</p>
+                    
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3 class="feature-title">أرشيف ضخم</h3>
+                    <p class="feature-desc">أرشيف يضم آلاف الساعات من التلاوات النادرة والبرامج الدينية منذ تأسيس الإذاعة عام 1964.</p>
+                    
+                </div>
+            </div>
+        </section>
+
+       
+        
+    </main>
+
+    <!-- التذييل -->
+   
+
+    <!-- زر العودة للأعلى -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // عناصر DOM الرئيسية
+            const audioPlayer = document.getElementById('quranRadio');
+            const playBtn = document.getElementById('playBtn');
+            const pauseBtn = document.getElementById('pauseBtn');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const repeatBtn = document.getElementById('repeatBtn');
+            const volumeSlider = document.getElementById('volumeSlider');
+            const backToTop = document.getElementById('backToTop');
+            const header = document.getElementById('header');
+            const currentTimeEl = document.getElementById('current-time');
+            const themeToggle = document.getElementById('theme-toggle');
+            const fullscreenToggle = document.getElementById('fullscreen-toggle');
+            const verseText = document.getElementById('verse-text');
+            const verseReference = document.getElementById('verse-reference');
+            const copyVerseBtn = document.getElementById('copy-verse');
+            const shareVerseBtn = document.getElementById('share-verse');
+            const newVerseBtn = document.getElementById('new-verse');
+            const listenersCount = document.getElementById('listeners-count');
+            const readersSlider = document.querySelector('.readers-slider');
+            
+            // بيانات التطبيق
+            const quranVerses = [
+                {
+                    text: "اللَّهُ نُورُ السَّمَاوَاتِ وَالْأَرْضِ ۚ مَثَلُ نُورِهِ كَمِشْكَاةٍ فِيهَا مِصْبَاحٌ ۖ الْمِصْبَاحُ فِي زُجَاجَةٍ ۖ الزُّجَاجَةُ كَأَنَّهَا كَوْكَبٌ دُرِّيٌّ يُوقَدُ مِن شَجَرَةٍ مُّبَارَكَةٍ زَيْتُونَةٍ لَّا شَرْقِيَّةٍ وَلَا غَرْبِيَّةٍ يَكَادُ زَيْتُهَا يُضِيءُ وَلَوْ لَمْ تَمْسَسْهُ نَارٌ ۚ نُّورٌ عَلَىٰ نُورٍ ۗ يَهْدِي اللَّهُ لِنُورِهِ مَن يَشَاءُ ۚ وَيَضْرِبُ اللَّهُ الْأَمْثَالَ لِلنَّاسِ ۗ وَاللَّهُ بِكُلِّ شَيْءٍ عَلِيمٌ",
+                    reference: "سورة النور - الآية 35"
+                },
+                {
+                    text: "إِنَّمَا يَخْشَى اللَّهَ مِنْ عِبَادِهِ الْعُلَمَاءُ ۗ إِنَّ اللَّهَ عَزِيزٌ غَفُورٌ",
+                    reference: "سورة فاطر - الآية 28"
+                },
+                {
+                    text: "وَإِذَا سَأَلَكَ عِبَادِي عَنِّي فَإِنِّي قَرِيبٌ ۖ أُجِيبُ دَعْوَةَ الدَّاعِ إِذَا دَعَانِ ۖ فَلْيَسْتَجِيبُوا لِي وَلْيُؤْمِنُوا بِي لَعَلَّهُمْ يَرْشُدُونَ",
+                    reference: "سورة البقرة - الآية 186"
+                },
+                {
+                    text: "وَمَنْ أَحْسَنُ قَوْلًا مِّمَّن دَعَا إِلَى اللَّهِ وَعَمِلَ صَالِحًا وَقَالَ إِنَّنِي مِنَ الْمُسْلِمِينَ",
+                    reference: "سورة فصلت - الآية 33"
+                },
+                {
+                    text: "الَّذِينَ آمَنُوا وَتَطْمَئِنُّ قُلُوبُهُم بِذِكْرِ اللَّهِ ۗ أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ",
+                    reference: "سورة الرعد - الآية 28"
+                }
+            ];
+            
+            
+            
+            // تهيئة الوقت الحالي
+            function updateTime() {
+                const now = new Date();
+                const timeString = now.toLocaleTimeString('ar-EG', {hour: '2-digit', minute:'2-digit'});
+                currentTimeEl.textContent = timeString;
+            }
+            
+            setInterval(updateTime, 1000);
+            updateTime();
+            
+            // تحديث عدد المستمعين بشكل عشوائي (محاكاة)
+            function updateListeners() {
+                const current = parseInt(listenersCount.textContent.replace(',', ''));
+                const change = Math.floor(Math.random() * 100) - 45; // -45 إلى +54
+                const newCount = Math.max(10000, current + change);
+                listenersCount.textContent = newCount.toLocaleString();
+            }
+            
+            setInterval(updateListeners, 5000);
+            
+            // تهيئة القراء
+            function initializeReaders() {
+                readersSlider.innerHTML = '';
+                
+                readers.forEach(reader => {
+                    const readerCard = document.createElement('div');
+                    readerCard.className = 'reader-card';
+                    
+                    readerCard.innerHTML = `
+                        <img src="${reader.image}" alt="${reader.name}" class="reader-avatar">
+                        <h3 class="reader-name">${reader.name}</h3>
+                        <div class="reader-style">${reader.style}</div>
+                        <p class="reader-desc">${reader.description}</p>
+                        <button class="reader-btn">
+                            <i class="fas fa-play-circle"></i> الاستماع
+                        </button>
+                    `;
+                    
+                    readersSlider.appendChild(readerCard);
+                });
+            }
+            
+            initializeReaders();
+            
+            // التحكم في الصوت
+            audioPlayer.volume = volumeSlider.value / 100;
+            
+            volumeSlider.addEventListener('input', function() {
+                audioPlayer.volume = this.value / 100;
+            });
+            
+            // التحكم في التشغيل
+            playBtn.addEventListener('click', function() {
+                audioPlayer.play();
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+            });
+            
+            pauseBtn.addEventListener('click', function() {
+                audioPlayer.pause();
+            });
+            
+            // تكرار التشغيل
+            let repeatMode = false;
+            repeatBtn.addEventListener('click', function() {
+                repeatMode = !repeatMode;
+                if (repeatMode) {
+                    repeatBtn.style.background = 'var(--gradient-accent)';
+                    repeatBtn.style.color = 'var(--primary-color)';
+                    audioPlayer.loop = true;
+                } else {
+                    repeatBtn.style.background = 'rgba(255, 255, 255, 0.1)';
+                    repeatBtn.style.color = 'var(--text-light)';
+                    audioPlayer.loop = false;
+                }
+            });
+            
+            // تبديل الآيات
+            let currentVerseIndex = 0;
+            
+            function changeVerse() {
+                currentVerseIndex = (currentVerseIndex + 1) % quranVerses.length;
+                verseText.textContent = `"${quranVerses[currentVerseIndex].text}"`;
+                verseReference.textContent = quranVerses[currentVerseIndex].reference;
+                
+                // تأثير التلاشي
+                verseText.style.opacity = 0;
+                verseReference.style.opacity = 0;
+                
+                setTimeout(() => {
+                    verseText.style.opacity = 1;
+                    verseReference.style.opacity = 1;
+                }, 300);
+            }
+            
+            newVerseBtn.addEventListener('click', changeVerse);
+            
+            // تغيير آية تلقائياً كل 30 ثانية
+            setInterval(changeVerse, 30000);
+            
+            // نسخ الآية
+            copyVerseBtn.addEventListener('click', function() {
+                const textToCopy = `${verseText.textContent}\n${verseReference.textContent}`;
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    const originalHTML = copyVerseBtn.innerHTML;
+                    copyVerseBtn.innerHTML = '<i class="fas fa-check"></i> تم النسخ';
+                    copyVerseBtn.style.background = 'rgba(46, 204, 113, 0.2)';
+                    copyVerseBtn.style.color = '#2ecc71';
+                    copyVerseBtn.style.borderColor = 'rgba(46, 204, 113, 0.5)';
+                    
+                    setTimeout(() => {
+                        copyVerseBtn.innerHTML = originalHTML;
+                        copyVerseBtn.style.background = '';
+                        copyVerseBtn.style.color = '';
+                        copyVerseBtn.style.borderColor = '';
+                    }, 2000);
+                });
+            });
+            
+            // مشاركة الآية
+            shareVerseBtn.addEventListener('click', function() {
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'آية قرآنية من إذاعة القرآن الكريم',
+                        text: `${verseText.textContent.substring(0, 100)}...`,
+                        url: window.location.href
+                    });
+                } else {
+                    alert('ميزة المشاركة غير مدعومة في هذا المتصفح. يمكنك نسخ الرابط يدوياً.');
+                }
+            });
+            
+            // تأثير التمرير على الهيدر
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                
+                // إظهار/إخفاء زر العودة للأعلى
+                if (window.scrollY > 300) {
+                    backToTop.classList.add('active');
+                } else {
+                    backToTop.classList.remove('active');
+                }
+            });
+            
+            // العودة للأعلى
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // تبديل السمة
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('light-theme');
+                
+                if (document.body.classList.contains('light-theme')) {
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    themeToggle.title = 'الوضع الداكن';
+                } else {
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    themeToggle.title = 'الوضع الفاتح';
+                }
+            });
+            
+            // ملء الشاشة
+            fullscreenToggle.addEventListener('click', function() {
+                if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen();
+                    fullscreenToggle.innerHTML = '<i class="fas fa-compress"></i>';
+                } else {
+                    document.exitFullscreen();
+                    fullscreenToggle.innerHTML = '<i class="fas fa-expand"></i>';
+                }
+            });
+            
+            // تغيير أيقونة ملء الشاشة عند الخروج من الوضع
+            document.addEventListener('fullscreenchange', function() {
+                if (!document.fullscreenElement) {
+                    fullscreenToggle.innerHTML = '<i class="fas fa-expand"></i>';
+                }
+            });
+            
+            // محاكاة تحميل البث
+            audioPlayer.addEventListener('waiting', function() {
+                console.log('جاري تحميل البث...');
+            });
+            
+            audioPlayer.addEventListener('playing', function() {
+                console.log('بدأ البث المباشر');
+            });
+            
+            // إضافة تأثيرات عند التمرير
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                    }
+                });
+            }, observerOptions);
+            
+            // مراقبة العناصر لإضافة تأثيرات الحركة
+            document.querySelectorAll('.feature-card, .verse-card, .stat-item').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
